@@ -4,6 +4,7 @@ import Button from './composants/Button';
 import Add from './composants/Add';
 import List from './composants/List';
 import Pay from './composants/Pay';
+import Card from './composants/Card';
 
 class App extends React.Component {
 
@@ -11,12 +12,14 @@ class App extends React.Component {
     super();
     this.state = {
       activeTabs: 'add',
-      items: []
+      items: [],
+      productName: "",
+      price: 1,
     }
     this.selectAdd = this.selectAdd.bind(this)
     this.selectList = this.selectList.bind(this)
     this.selectPay = this.selectPay.bind(this)
-    this.add = this.add.bind(this)
+    this.addItem = this.addItem.bind(this)
   }
 
   selectAdd(e) {
@@ -38,7 +41,7 @@ class App extends React.Component {
     })
   }
 
-  add(name, price) {
+  addItem(name, price) {
     const obj = {
       name: name,
       price: price
@@ -53,7 +56,7 @@ class App extends React.Component {
   renderContent = () => {
     switch(this.state.activeTabs) {
       case 'add':
-        return <Add addItem={this.add}></Add>
+        return <Add addItem={this.addItem}></Add>
       case 'list':
         return <List listItems={this.state.items}></List>
       case 'pay':
