@@ -7,6 +7,18 @@ class Card extends Component {
             image: "./public/images/item.png"
         };
     }
+    componentDidMount() {
+    
+        fetch(`https://raw.githubusercontent.com/konexio/digitous-assest/main/bakery/"${this.props.productName}".png`)
+          .then((res) => res.blob())
+          .then((url) => {
+             this.url = URL.createObjectURL(url);
+            this.setState({ 
+                image: url,
+               });
+          })
+    }
+
     render() {
         return (
             <div
